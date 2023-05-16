@@ -3,7 +3,7 @@ package viewmodels
 import play.api.libs.json._
 
 class Book(var title: String, var authorFirstName: String, var authorLastName:String) {
-  var author : Author = new Author(authorFirstName, authorFirstName)
+  var author : Author = new Author(authorFirstName, authorLastName)
 
   val authorFullName = author.fullName
 
