@@ -13,3 +13,6 @@ GET /api/ controllers.APIController.index()
 
 GET /api/singlebook controllers.APIController.singlebook()
 GET /api/singleauthor controllers.APIController.singleauthor()
+
+GET /api/books controllers.APIController.listofbooks()
+GET /api/authors controllers.APIController.listofauthors()
