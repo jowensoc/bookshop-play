@@ -16,3 +16,5 @@ GET /api/singleauthor controllers.APIController.singleauthor()
 
 GET /api/books controllers.APIController.listofbooks()
 GET /api/authors controllers.APIController.listofauthors()
+
+GET /api/search/:bookTitle controllers.APIController.searchBooks(bookTitle: String, authorFirstName = "", authorLastName = "")
