@@ -40,7 +40,7 @@ class APIController @Inject()(val controllerComponents: ControllerComponents) ex
 
     var bookService = new MockDataService()
 
-    var authorObj: List[Book] = bookService.getAllBooks().toList
+    var authorObj: List[Author] = bookService.getAllAuthors().toList
 
     Ok(Json.stringify(Json.toJson(authorObj))).as("application/json")
   }
@@ -50,7 +50,7 @@ class APIController @Inject()(val controllerComponents: ControllerComponents) ex
 
     var bookService = new MockDataService()
 
-    var totalBooks = bookService.getAllBooks().toList.length - 1
+    var totalBooks = bookService.getAllBooks().length - 1
     var randomIndex = 0 + rnd.nextInt(totalBooks)
 
     var bookObj : Book = bookService.getAllBooks().toList(randomIndex)
@@ -69,6 +69,16 @@ class APIController @Inject()(val controllerComponents: ControllerComponents) ex
     var authorObj: Author = bookService.getAllBooks().toList(randomIndex).author
 
     Ok(Json.stringify(Json.toJson(authorObj))).as("application/json")
+  }
+
+  def searchBooks(bookTitle: String, authorFirstName: String, authorLastName: String) = Action { implicit request: Request[AnyContent] =>
+    var bookService = new MockDataService();
+
+    var searchParameters = new SearchParameters(bookTitle, authorFirstName, authorLastName)
+
+    var booksObj: List[Book] = bookService.searchBooks(searchParameters).toList
+
+    Ok(Json.stringify(Json.toJson(booksObj))).as("application/json")
   }
 
 }
